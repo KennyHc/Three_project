@@ -4,24 +4,36 @@ import { Mesh, BufferGeometry, Material, Group } from 'three'
 import { useGLTF } from '@react-three/drei'
 
 const ThreeScene = () => {
-  const meshRef = useRef<Mesh<BufferGeometry, Material | Material[]>>(null)
   const groupRef = useRef<Group>(null)
+  const cube1Ref = useRef<Mesh<BufferGeometry, Material | Material[]>>(null)
+  const cube2Ref = useRef<Mesh<BufferGeometry, Material | Material[]>>(null)
+  const cube3Ref = useRef<Mesh<BufferGeometry, Material | Material[]>>(null)
 
   useFrame((state, delta) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x += delta * 0.1
-      meshRef.current.rotation.y += delta * 0.1
-      meshRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.1
-    }
     if (groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.05
+      groupRef.current.rotation.y += delta * 0.1
+    }
+    if (cube1Ref.current) {
+      cube1Ref.current.rotation.x += delta * 0.2
+      cube1Ref.current.rotation.y += delta * 0.1
+      cube1Ref.current.position.y = Math.sin(state.clock.elapsedTime) * 0.2
+    }
+    if (cube2Ref.current) {
+      cube2Ref.current.rotation.x += delta * 0.15
+      cube2Ref.current.rotation.z += delta * 0.1
+      cube2Ref.current.position.y = Math.sin(state.clock.elapsedTime + 1) * 0.15
+    }
+    if (cube3Ref.current) {
+      cube3Ref.current.rotation.y += delta * 0.2
+      cube3Ref.current.rotation.z += delta * 0.15
+      cube3Ref.current.position.y = Math.sin(state.clock.elapsedTime + 2) * 0.1
     }
   })
 
   return (
     <group ref={groupRef}>
-      <mesh ref={meshRef}>
-        <torusKnotGeometry args={[1, 0.3, 100, 16, 1, 3]} />
+      <mesh ref={cube1Ref} position={[-2, 0, 0]}>
+        <boxGeometry args={[1.5, 1.5, 1.5]} />
         <meshStandardMaterial 
           color="#e5e7eb"
           metalness={0.1}
@@ -29,8 +41,8 @@ const ThreeScene = () => {
           envMapIntensity={0.3}
         />
       </mesh>
-      <mesh position={[2, 0, 0]}>
-        <sphereGeometry args={[0.5, 32, 32]} />
+      <mesh ref={cube2Ref} position={[0, 0, -2]}>
+        <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial 
           color="#f3f4f6"
           metalness={0.1}
@@ -38,8 +50,8 @@ const ThreeScene = () => {
           envMapIntensity={0.3}
         />
       </mesh>
-      <mesh position={[-2, 0, 0]}>
-        <octahedronGeometry args={[0.6, 0]} />
+      <mesh ref={cube3Ref} position={[2, 0, 0]}>
+        <boxGeometry args={[0.8, 0.8, 0.8]} />
         <meshStandardMaterial 
           color="#d1d5db"
           metalness={0.1}

@@ -54,25 +54,30 @@ function App() {
           </div>
           <div className="hero-content">
             <h2>Welcome to My World</h2>
-            <p>Creative Developer & Designer</p>
           </div>
         </section>
 
         <section id="about" className="section">
-          <h2>About Me</h2>
-          <p>I'm a passionate developer with expertise in 3D graphics and web development.</p>
+          <div className="section-content">
+            <h2>About Me</h2>
+            <p>I'm a passionate developer with expertise in 3D graphics and web development. My work focuses on creating immersive digital experiences that blend creativity with technical excellence.</p>
+          </div>
         </section>
 
         <section id="projects" className="section">
-          <h2>Projects</h2>
-          <div className="projects-grid">
-            {/* Project cards will go here */}
+          <div className="section-content">
+            <h2>Projects</h2>
+            <div className="projects-grid">
+              {/* Project cards will go here */}
+            </div>
           </div>
         </section>
 
         <section id="contact" className="section">
-          <h2>Get in Touch</h2>
-          <p>Feel free to reach out for collaborations or just a friendly hello!</p>
+          <div className="section-content">
+            <h2>Get in Touch</h2>
+            <p>Feel free to reach out for collaborations or just a friendly hello! I'm always open to discussing new projects and opportunities.</p>
+          </div>
         </section>
       </main>
 
